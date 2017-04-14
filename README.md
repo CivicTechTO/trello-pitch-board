@@ -7,5 +7,11 @@ The goal of this project is to proof-of-concept a project dashboard on
 top of the Trello API, so that we can have something up on screen during
 hacknight pitches.
 
-There's a Slack channel:
-[`#proj-projects-app`](https://civictechto.slack.com/messages/C2U8J8Z6C)
+There's a Slack channel: [`#proj-projects-app`][slack]
+
+   [slack]: https://civictechto.slack.com/messages/C2U8J8Z6C
+
+It read from [this Trello board][trello]. (Specifically, the "Tonight's Pitches"
+list.)
+
+   [trello]: https://trello.com/b/EVvNEGK5/hacknight-projects
