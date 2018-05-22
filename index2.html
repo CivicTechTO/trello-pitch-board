@@ -49,7 +49,7 @@
         <div v-for="card in pitchList" class='card content-left-wrap col-lg-4 col-md-6 col-sm-12'>
           <div class='card-block'>
             <h4 class='card-title'>{{ card.name }}</h4>
-            <button v-bind:id="'show-modal-' + card.id" @click="show">Show Modal</button>
+            <button class="btn" v-bind:id="'show-modal-' + card.id" @click="show">View Details</button>
           </div>
         </div>
       </div>
