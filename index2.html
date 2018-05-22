@@ -46,22 +46,33 @@
   <div class="container" id="app">
     <div id="projects" class="clear">
       <div class="row">
-        <div v-for="card in pitchList" class='card content-left-wrap col-lg-4 col-md-6 col-sm-12'>
+        <div v-for="(card, index) in pitchList" class='card content-left-wrap col-lg-4 col-md-6 col-sm-12'>
           <div class='card-block'>
             <h4 class='card-title'>{{ card.name }}</h4>
-            <button class="btn" v-bind:id="'show-modal-' + card.id" @click="show">View Details</button>
+            <button class="btn" v-bind:id="'show-modal-' + card.id" @click="show(index)">View Details</button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- use the modal component, pass in the prop -->
-    <modal v-if="showModal" @close="hide">
+    <modal v-if="showModal">
       <!--
         you can use custom content here to overwrite
         default content
       -->
-      <h3 slot="header">custom header</h3>
+
+      <h3 slot="header">{{ pitchDetails.name }}</h3>
+      <div slot="body">
+        <img class="modal-image" :src="pitchDetails.image">
+        <p>{{ pitchDetails.desc }}<p>
+      </div>
+      <div slot="footer">
+        <button class="modal-default-button" @click="hide">
+          OK
+        </button>
+      </div>
+
     </modal>
   </div>
   <script src="js/client2.js"></script>

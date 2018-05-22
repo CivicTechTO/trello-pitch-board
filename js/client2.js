@@ -9,6 +9,7 @@ new Vue({
   el: '#app',
   data: {
     showModal: false,
+    pitchDetails: {},
     pitchList: [],
   },
   created: function () {
@@ -22,7 +23,12 @@ new Vue({
         vm.pitchList = response.data
       })
     },
-    show: function () {
+    updateModal: function (index) {
+      vm = this
+      vm.pitchDetails = vm.pitchList[index]
+    },
+    show: function (index) {
+      this.updateModal(index)
       this.showModal = true
     },
     hide: function () {
