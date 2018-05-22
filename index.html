@@ -3,6 +3,11 @@
     <title>CivicTechTO Hacknight Pitch Board</title>
     <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
+    <script src="//unpkg.com/vue"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="//api.trello.com/1/client.js?key=17ccd791431275b4c0afade4c83763bf"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.0/underscore-min.js"></script>
     <style>
       .github-fork-ribbon:before,
       .github-fork-ribbon:after {
@@ -12,43 +17,20 @@
   </head>
   <body>
     <a class="github-fork-ribbon" href="https://github.com/civictechto/trello-project-frontend" title="Fork me on GitHub">Fork me on GitHub</a>
-    <div class="container">
+    <div class="container" id="app">
       <h1>CivicTechTO Hacknight Pitch Board</h1>
       <div id="projects" class="clear">
-        <div class="row"></div>
+        <div class="row">
+          <div  v-for="card in pitchList" class='card content-left-wrap col-lg-4 col-md-6 col-sm-12'>
+            <img v-if="card.attachments && card.attachments.length > 0" class="card-img-left img-fluid" :src="card.attachments[0].url" alt="">
+            <div class='card-block'>
+              <h4 class='card-title'>{{ card.name }}</h4>
+              <p class='card-text'>{{ card.desc }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <script src="js/client.js"></script>
   </body>
-
-  <script src="//code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
-  <script src="//api.trello.com/1/client.js?key=17ccd791431275b4c0afade4c83763bf"></script>
-  
-  <script type="text/javascript">
-    var loadedCards = function(cards) {
-      $.each(cards, function(index, card) {
-        var card = $("<div class='card content-left-wrap col-lg-4 col-md-6 col-sm-12'><div class='card-block'><h4 class='card-title'>"+card.name+"</h4><p class='card-text'>"+card.desc+"</p></div></div>");
-        $('#projects > .row').append(card);
-      });
-    };
-    var loadCards = function(listId) {
-      //Get the users boards
-      Trello.get(
-        '/lists/' + listId + '/cards',
-        loadedCards,
-        function() { console.log("Failed to load cards"); }
-      );
-    };
-
-    var pitchListId = '58e158f29b0ae02ab71b9a87';
-    Trello.authorize({
-      type: "popup",
-      name: "Trello dashboard",
-      scope: {
-        read: true,
-        write: false },
-      expiration: "never",
-      success: loadCards(pitchListId),
-      error: function() { console.log("Failed authentication"); }
-    });
-  </script>
 </html>
