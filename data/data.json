@@ -1,6 +1,7 @@
 [
   {
     "name": "Civic Tech 101",
+    "desc": " If you are new to Civic Tech, come and learn all about Civic Tech Toronto :) **Highly recommended!**",
     "image": null,
     "members": [
       {
@@ -12,6 +13,7 @@
   },
   {
     "name": "Women and Color",
+    "desc": "Find talented women and people of color to speak at your tech-related event in Toronto (and working to expand to other cities).",
     "image": "https://trello-attachments.s3.amazonaws.com/58e158d86835ad6514fa6be3/59ffd5b130e613fa9ca1d964/552c443f160806878f774f548b824774/womenandcolor-logo.jpg",
     "members": [
       {
@@ -23,6 +25,7 @@
   },
   {
     "name": "BikeSpace",
+    "desc": "Bike Space Project aims to improve Toronto’s bike infrastructure. The project is working on a tool that will enable cyclists to identify places where there is not enough bicycle parking.",
     "image": "https://trello-attachments.s3.amazonaws.com/58e158d86835ad6514fa6be3/59ffd419d3228ba3b9eabf79/e3d4f86220e50b79e04bdec32ae8298b/BikeSpace_badge_black.jpg",
     "members": [
       {
@@ -34,6 +37,7 @@
   },
   {
     "name": "Toronto Shelter Map",
+    "desc": "The Toronto Shelter Map project looks to provide a feasible, on-budget solution for communicating shelter availabilities among shelter networks. Currently, our scope is focused on emergency Winter Respite sites and Out of the Cold programs within the city.",
     "image": "https://trello-attachments.s3.amazonaws.com/58e158d86835ad6514fa6be3/5b01b44bad226fca665aeccb/cd1e299c7eca0d14354880bcf9329722/toronto_shelter_map.jpg",
     "members": [
       {
