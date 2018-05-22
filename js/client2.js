@@ -22,5 +22,11 @@ new Vue({
         vm.mydata = response.data
       })
     },
-  }
+    show: function () {
+      this.showModal = true
+    },
+    hide: function () {
+      this.showModal = false
+    }
+  },
 })

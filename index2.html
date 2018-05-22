@@ -43,9 +43,9 @@
 
   <!-- app -->
   <div id="app">
-    <button id="show-modal" @click="showModal = true">Show Modal</button>
+    <button id="show-modal" @click="show">Show Modal</button>
     <!-- use the modal component, pass in the prop -->
-    <modal v-if="showModal" @close="showModal = false">
+    <modal v-if="showModal" @close="hide">
       <!--
         you can use custom content here to overwrite
         default content
