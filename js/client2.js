@@ -25,6 +25,7 @@ new Vue({
     },
     updateModal: function (index) {
       vm = this
+      console.log(vm.pitchList[index])
       vm.pitchDetails = vm.pitchList[index]
     },
     show: function (index) {
