@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Civic Tech 101",
+    "image": null,
+    "members": [
+      {
+        "name": "Patrick Connolly",
+        "username": "patcon",
+        "image": "https://trello-avatars.s3.amazonaws.com/4963da395a29949964f3a666579a92e0/original.png"
+      }
+    ]
+  },
+  {
+    "name": "Women and Color",
+    "image": "https://trello-attachments.s3.amazonaws.com/58e158d86835ad6514fa6be3/59ffd5b130e613fa9ca1d964/552c443f160806878f774f548b824774/womenandcolor-logo.jpg",
+    "members": [
+      {
+        "name": "Mohammed Asaduallah",
+        "username": "mohammedasaduallah",
+        "image": null
+      }
+    ]
+  },
+  {
+    "name": "BikeSpace",
+    "image": "https://trello-attachments.s3.amazonaws.com/58e158d86835ad6514fa6be3/59ffd419d3228ba3b9eabf79/e3d4f86220e50b79e04bdec32ae8298b/BikeSpace_badge_black.jpg",
+    "members": [
+      {
+        "name": "Jake Miller",
+        "username": "jakemiller50",
+        "image": null
+      }
+    ]
+  },
+  {
+    "name": "Toronto Shelter Map",
+    "image": "https://trello-attachments.s3.amazonaws.com/58e158d86835ad6514fa6be3/5b01b44bad226fca665aeccb/cd1e299c7eca0d14354880bcf9329722/toronto_shelter_map.jpg",
+    "members": [
+      {
+        "name": "Joey Hua",
+        "username": "joeuhua1",
+        "image": "https://trello-avatars.s3.amazonaws.com/0856a2705d130cacc7d7565fc6e1b069/original.png"
+      }
+    ]
+  }
+]
