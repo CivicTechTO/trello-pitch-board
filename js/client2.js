@@ -9,7 +9,7 @@ new Vue({
   el: '#app',
   data: {
     showModal: false,
-    mydata: [],
+    pitchList: [],
   },
   created: function () {
     this.fetchData()
@@ -19,7 +19,7 @@ new Vue({
       vm = this
       vm.$http.get('data/data.json')
       .then(response => {
-        vm.mydata = response.data
+        vm.pitchList = response.data
       })
     },
     show: function () {

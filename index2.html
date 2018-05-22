@@ -3,6 +3,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style2.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
   <script type="text/javascript" src="https://unpkg.com/vue@latest/dist/vue.js"></script>
@@ -42,8 +43,18 @@
   </script>
 
   <!-- app -->
-  <div id="app">
-    <button id="show-modal" @click="show">Show Modal</button>
+  <div class="container" id="app">
+    <div id="projects" class="clear">
+      <div class="row">
+        <div v-for="card in pitchList" class='card content-left-wrap col-lg-4 col-md-6 col-sm-12'>
+          <div class='card-block'>
+            <h4 class='card-title'>{{ card.name }}</h4>
+            <button v-bind:id="'show-modal-' + card.id" @click="show">Show Modal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- use the modal component, pass in the prop -->
     <modal v-if="showModal" @close="hide">
       <!--
