@@ -15,3 +15,8 @@ It read from [this Trello board][trello]. (Specifically, the "Tonight's Pitches"
 list.)
 
    [trello]: https://trello.com/b/EVvNEGK5/hacknight-projects
+
+## Proof of Concepts
+
+- Pulling data from Trello. [Demo.](https://civictechto.github.io/trello-pitch-board) [Code.](/index.html)
+- Vue.js modals. [Demo.](https://civictechto.github.io/trello-pitch-board/modal-test.html) [Code.](/modal-test.html)
