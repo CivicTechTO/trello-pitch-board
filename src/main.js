@@ -31,6 +31,10 @@ var loadedCards = function (response) {
 var VueTruncate = require('vue-truncate-filter')
 Vue.use(VueTruncate)
 
+Vue.filter('firstParagraph', function (value) {
+  return value.split("\n")[0]
+});
+
 var app = new Vue({
   el: '#app',
   data: {
