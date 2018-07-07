@@ -35,6 +35,12 @@ Vue.filter('firstParagraph', function (value) {
   return value.split("\n")[0]
 });
 
+const removeMd = require('remove-markdown')
+
+Vue.filter('removeMd', function(value) {
+  return removeMd(value)
+});
+
 var app = new Vue({
   el: '#app',
   data: {

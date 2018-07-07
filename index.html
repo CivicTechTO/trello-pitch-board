@@ -25,7 +25,7 @@
             <img v-if="card.attachments && card.attachments.length > 0" class="card-img-left img-fluid" :src="card.attachments[0].url" alt="">
             <div class='card-block'>
               <h4 class='card-title'>{{ card.name }}</h4>
-              <p class='card-text'>{{ card.desc | firstParagraph | truncate(200) }}</p>
+              <p class='card-text'>{{ card.desc | removeMd | firstParagraph | truncate(200) }}</p>
             </div>
           </div>
         </div>

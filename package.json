@@ -10,6 +10,7 @@
     "build": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > dist/build.js"
   },
   "dependencies": {
+    "remove-markdown": "^0.3.0",
     "vue": "^2.0.1",
     "vue-truncate-filter": "^1.1.7"
   },
