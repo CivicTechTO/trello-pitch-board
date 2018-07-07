@@ -28,17 +28,13 @@ var loadedCards = function (response) {
   this.pitchList = response;
 }
 
+var VueTruncate = require('vue-truncate-filter')
+Vue.use(VueTruncate)
+
 var app = new Vue({
   el: '#app',
   data: {
-    pitchList: [
-      {
-        name: 'BikeSpace',
-        desc: 'This is a description',
-        image: 'https://trello-attachments.s3.amazonaws.com/58e158d86835ad6514fa6be3/59ffd419d3228ba3b9eabf79/e3d4f86220e50b79e04bdec32ae8298b/BikeSpace_badge_black.jpg',
-        alt: 'The BikeSpace logo',
-      }
-    ],
+    pitchList: [],
   },
   created: function () {
     this.fetchData()

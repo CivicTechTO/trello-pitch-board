@@ -15,3 +15,16 @@ It read from [this Trello board][trello]. (Specifically, the "Tonight's Pitches"
 list.)
 
    [trello]: https://trello.com/b/EVvNEGK5/hacknight-projects
+
+## :hammer_and_wrench: Technologies Used
+
+- Vue.js
+- Browserify
+- Trello
+
+## :computer: Local Development
+
+```
+npm install
+npm run dev
+```
