@@ -143,16 +143,19 @@
       </transition>
     </script>
 
-    <a class="github-fork-ribbon" href="https://github.com/civictechto/trello-project-frontend" title="Fork me on GitHub">Fork me on GitHub</a>
-    <div class="container" id="app">
-      <h1>CivicTechTO Hacknight Pitch Board</h1>
+    <main role="main" class="container" id="app">
+      <a class="github-fork-ribbon fixed" href="https://github.com/civictechto/trello-project-frontend" title="Fork me on GitHub">Fork me on GitHub</a>
       <div id="projects" class="clear">
-        <div class="row">
-          <div  v-for="(card, index) in pitchList" class='card content-left-wrap col-lg-4 col-md-6 col-sm-12'>
-            <div class='card-block'>
-              <h4 class='card-title'>{{ card.name }}</h4>
+        <div class="row card-group">
+          <div v-for="(card, index) in pitchList" class='col-lg-4 col-md-6 col-sm-12 mb-4'>
+            <div class="card">
+            <div class="card-header">
+              {{ card.name }}
+            </div>
+            <div class='card-body'>
               <p class='card-text'>{{ card.desc | removeMd | firstParagraph | truncate(200) }}</p>
               <button class="btn" v-bind:id="'show-modal-' + card.id" @click="show(index)">View Details</button>
+            </div>
             </div>
           </div>
         </div>
@@ -165,19 +168,19 @@
           default content
         -->
 
-        <h3 slot="header">{{ pitchDetails.name }}</h3>
+        <h5 slot="header" class="modal-title">{{ pitchDetails.name }}</h5>
         <img slot="image" v-if="pitchDetails.image" :src="pitchDetails.image" alt="">
         <div slot="body">
           <p>{{ pitchDetails.desc | removeMd }}<p>
         </div>
         <div slot="footer">
-          <button class="modal-default-button" @click="hide">
+          <button class="btn" @click="hide">
             OK
           </button>
         </div>
       </modal>
 
-    </div>
+    </main>
     <script src="dist/build.js"></script>
   </body>
 </html>
