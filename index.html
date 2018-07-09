@@ -13,6 +13,18 @@
       .github-fork-ribbon:after {
         height: 2.2em;
       }
+
+      body {
+        padding-top: 5rem;
+      }
+
+      .navbar-brand.org {
+        font-size: 1rem;
+      }
+
+      .navbar-brand.title {
+        font-size: 1.5rem;
+      }
     </style>
     <style>
       .modal-mask {
@@ -88,6 +100,10 @@
 
   </head>
   <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand org" href="http://civictech.ca">CivicTechTO</a>
+      <a class="navbar-brand title" href="#">Hacknight Pitch Board</a>
+    </nav>
     <!-- template for the modal component -->
     <script type="text/x-template" id="modal-template">
       <transition name="modal">
