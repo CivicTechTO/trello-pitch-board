@@ -41,11 +41,6 @@ Vue.filter('removeMd', function(value) {
   return removeMd(value)
 });
 
-// register modal component
-Vue.component('modal', {
-  template: '#modal-template'
-})
-
 var app = new Vue({
   el: '#app',
   data: {
@@ -63,8 +58,8 @@ var app = new Vue({
       Trello.get('/lists/' + pitchListId + '/cards')
       .then(cards => {
             vm.pitchList = cards.map(card => _.extend(card, {attachments: []}))
-            vm.pitchList = cards.map(card => _.extend(card, {image: ''}))
-            cardIds = cards.map(card => card.id)
+            vm.pitchList = cards.map(card => _.extend(card, {image: 'https://trello-attachments.s3.amazonaws.com/58e158d86835ad6514fa6be3/59ffd9fd175e135b4cf5cabb/ad907c5b81371304d14434348ed14837/3YbiY6Mf_400x400.png'}))
+            var cardIds = cards.map(card => card.id)
             cardIds.forEach((cardId, i) => {
                             Trello.get('/cards/'+cardId+'/attachments')
                             .then(attachments => {
