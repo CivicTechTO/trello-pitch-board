@@ -58,7 +58,7 @@ var app = new Vue({
   },
   methods: {
     fetchData: function () {
-      vm = this
+      var vm = this
       var pitchListId = '58e158f29b0ae02ab71b9a87';
       Trello.get('/lists/' + pitchListId + '/cards')
       .then(cards => {
@@ -83,7 +83,7 @@ var app = new Vue({
       });
     },
     updateModal: function (index) {
-      vm = this
+      var vm = this
       vm.pitchDetails = vm.pitchList[index]
       console.log(this.pitchDetails)
     },
