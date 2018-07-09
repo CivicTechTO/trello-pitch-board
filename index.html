@@ -97,7 +97,7 @@
       </div>
 
       <div class="modal-mask" v-if="showModal">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-lg" v-click-outside="hide" role="document">
           <div class="modal-content container">
             <div class="modal-header">
               <h3 class="modal-title">{{ pitchDetails.name }}</h3>
