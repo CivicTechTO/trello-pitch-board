@@ -24,6 +24,34 @@ var loadCards = function(listId) {
   );
 };
 
+var DEFAULT_IMAGE = 'https://trello-attachments.s3.amazonaws.com/58e158d86835ad6514fa6be3/59ffd9fd175e135b4cf5cabb/ad907c5b81371304d14434348ed14837/3YbiY6Mf_400x400.png';
+
+var processCard = function(card) {
+  card.asks = []
+  card.tools = []
+  card.attachments = []
+  card.image = DEFAULT_IMAGE
+  card.labels.forEach(label => {
+    if (label.name.startsWith('Asks -')) {
+      var ask = label.name.substring(7)
+      card.asks.push(ask)
+    }
+    if (label.name.startsWith('Tool -')) {
+      var tool = label.name.substring(7)
+      card.tools.push(tool)
+    }
+  })
+  Trello.get('/cards/'+card.id+'/attachments')
+  .then(attachments => {
+    attachments.forEach(attachment => {
+      if(attachment.name.startsWith('Cover Image:')) {
+        card.image = attachment.url
+      }
+    })
+    card.attachments = attachments
+  })
+}
+
 var loadedCards = function (response) {
   this.pitchList = response;
 }
@@ -57,21 +85,10 @@ var app = new Vue({
       var pitchListId = '58e158f29b0ae02ab71b9a87';
       Trello.get('/lists/' + pitchListId + '/cards')
       .then(cards => {
-            vm.pitchList = cards.map(card => _.extend(card, {attachments: []}))
-            vm.pitchList = cards.map(card => _.extend(card, {image: 'https://trello-attachments.s3.amazonaws.com/58e158d86835ad6514fa6be3/59ffd9fd175e135b4cf5cabb/ad907c5b81371304d14434348ed14837/3YbiY6Mf_400x400.png'}))
-            var cardIds = cards.map(card => card.id)
-            cardIds.forEach((cardId, i) => {
-                            Trello.get('/cards/'+cardId+'/attachments')
-                            .then(attachments => {
-                                  console.log(attachments)
-                                  attachments.forEach(attachment => {
-                                    if(attachment.name.startsWith('Cover Image:')) {
-                                      vm.pitchList[i].image = attachment.url
-                                    }
-                                  })
-                                  vm.pitchList[i].attachments = attachments
-                            })
-            })
+        cards.forEach(card => {
+          processCard(card)
+          vm.pitchList.push(card)
+        })
       })
       .error(function () {
         console.log("Failed to load cards");

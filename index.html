@@ -100,10 +100,10 @@
               </div>
               <div class="col">
                 <div class="asks">
-                  <h5>Asks:</h5>
+                  <strong>Asks:</strong> <span v-for="(ask, index) in pitchDetails.asks">{{ ask }}<span v-if="index+1 < pitchDetails.asks.length">, </span></span>
                 </div>
-                <div class="asks">
-                  <h5>Tools:</h5>
+                <div class="tools">
+                  <strong>Tools:</strong> <span v-for="(tool, index) in pitchDetails.tools">{{ tool }}<span v-if="index+1 < pitchDetails.tools.length">, </span></span>
                 </div>
               </div>
             </div>
