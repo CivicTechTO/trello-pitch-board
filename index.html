@@ -13,7 +13,7 @@
       .github-fork-ribbon:after {
         height: 2.2em;
       }
-      
+
       .github-fork-ribbon {
         z-index: 9000;
       }
@@ -71,10 +71,15 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
       <a class="navbar-brand org" href="http://civictech.ca">CivicTechTO</a>
       <a class="navbar-brand title" href="#">Hacknight Pitch Board</a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="https://trello.com/b/EVvNEGK5/hacknight-projects">Trello Board</a>
+        </li>
+      </ul>
     </nav>
 
     <main role="main" class="container" id="app">
-      <a class="github-fork-ribbon fixed" href="https://github.com/civictechto/trello-project-frontend" title="Contribute on GitHub">Contribute on GitHub</a>
+      <a class="github-fork-ribbon fixed right-bottom" href="https://github.com/civictechto/trello-project-frontend" title="Contribute on GitHub">Contribute on GitHub</a>
       <div id="projects" class="clear">
         <div class="row card-group">
           <div v-for="(card, index) in pitchList" class='col-lg-4 col-md-6 col-sm-12 mb-4'>
