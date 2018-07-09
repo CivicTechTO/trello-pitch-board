@@ -101,6 +101,7 @@
           <div class="modal-content container">
             <div class="modal-header">
               <h3 class="modal-title">{{ pitchDetails.name }}</h3>
+              <button type="button" class="close" @click="hide">&times;</button>
             </div>
 
             <div class="modal-body row">
@@ -123,9 +124,7 @@
             </div>
 
             <div class="modal-footer">
-              <button class="btn" @click="hide">
-                OK
-              </button>
+              <a class="btn btn-primary" role="button" target="_blank" v-bind:href="pitchDetails.shortUrl">Edit</a>
             </div>
           </div>
         </div>
