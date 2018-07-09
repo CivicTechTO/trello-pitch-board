@@ -28,17 +28,30 @@ var loadedCards = function (response) {
   this.pitchList = response;
 }
 
+var VueTruncate = require('vue-truncate-filter')
+Vue.use(VueTruncate)
+
+Vue.filter('firstParagraph', function (value) {
+  return value.split("\n")[0]
+});
+
+const removeMd = require('remove-markdown')
+
+Vue.filter('removeMd', function(value) {
+  return removeMd(value)
+});
+
+// register modal component
+Vue.component('modal', {
+  template: '#modal-template'
+})
+
 var app = new Vue({
   el: '#app',
   data: {
-    pitchList: [
-      {
-        name: 'BikeSpace',
-        desc: 'This is a description',
-        image: 'https://trello-attachments.s3.amazonaws.com/58e158d86835ad6514fa6be3/59ffd419d3228ba3b9eabf79/e3d4f86220e50b79e04bdec32ae8298b/BikeSpace_badge_black.jpg',
-        alt: 'The BikeSpace logo',
-      }
-    ],
+    pitchList: [],
+    showModal: false,
+    pitchDetails: {},
   },
   created: function () {
     this.fetchData()
@@ -50,11 +63,17 @@ var app = new Vue({
       Trello.get('/lists/' + pitchListId + '/cards')
       .then(cards => {
             vm.pitchList = cards.map(card => _.extend(card, {attachments: []}))
+            vm.pitchList = cards.map(card => _.extend(card, {image: ''}))
             cardIds = cards.map(card => card.id)
             cardIds.forEach((cardId, i) => {
                             Trello.get('/cards/'+cardId+'/attachments')
                             .then(attachments => {
                                   console.log(attachments)
+                                  attachments.forEach(attachment => {
+                                    if(attachment.name.startsWith('Cover Image:')) {
+                                      vm.pitchList[i].image = attachment.url
+                                    }
+                                  })
                                   vm.pitchList[i].attachments = attachments
                             })
             })
@@ -62,6 +81,18 @@ var app = new Vue({
       .error(function () {
         console.log("Failed to load cards");
       });
+    },
+    updateModal: function (index) {
+      vm = this
+      vm.pitchDetails = vm.pitchList[index]
+      console.log(this.pitchDetails)
+    },
+    show: function (index) {
+      this.updateModal(index)
+      this.showModal = true
+    },
+    hide: function () {
+      this.showModal = false
     },
   }
 })

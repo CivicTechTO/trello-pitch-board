@@ -16,7 +16,15 @@ list.)
 
    [trello]: https://trello.com/b/EVvNEGK5/hacknight-projects
 
-## Proof of Concepts
+## :hammer_and_wrench: Technologies Used
 
-- Pulling data from Trello. [Demo.](https://civictechto.github.io/trello-pitch-board) [Code.](/index.html)
-- Vue.js modals. [Demo.](https://civictechto.github.io/trello-pitch-board/modal-test.html) [Code.](/modal-test.html)
+- Vue.js
+- Browserify
+- Trello
+
+## :computer: Local Development
+
+```
+npm install
+npm run dev
+```
