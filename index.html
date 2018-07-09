@@ -153,7 +153,7 @@
               {{ card.name }}
             </div>
             <div class='card-body'>
-              <p class='card-text'>{{ card.desc | removeMd | firstParagraph | truncate(200) }}</p>
+              <p class='card-text'>{{ card.desc | removeMd | firstParagraph | truncate(150) }}</p>
               <button class="btn" v-bind:id="'show-modal-' + card.id" @click="show(index)">View Details</button>
             </div>
             </div>
