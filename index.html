@@ -125,7 +125,8 @@
             </div>
 
             <div class="modal-footer">
-              <a class="btn btn-primary" role="button" target="_blank" v-bind:href="pitchDetails.shortUrl">Edit</a>
+              <a class="btn btn-link" role="button" target="_blank" v-bind:href="pitchDetails.shortUrl" style="text-decoration:inherit">Edit <i class="fas fa-external-link-alt"></i></a>
+              <a class="btn btn-primary" role="button" target="_blank" @click="hide">OK</a>
             </div>
           </div>
         </div>
