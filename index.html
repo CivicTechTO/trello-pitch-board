@@ -19,6 +19,10 @@
         z-index: 9000;
       }
 
+      .btn.disabled {
+        opacity: 0.3;
+      }
+
       body {
         padding-top: 5rem;
       }
@@ -102,25 +106,24 @@
             <a class="nav-link" href="https://trello.com/b/EVvNEGK5/hacknight-projects">Trello Board</a>
           </li>
         </ul>
-        <button class="btn" @click="authTrello">Login with Trello</button>
+        <button class="btn" v-bind:class="{ disabled: isLoggedIn }" @click="authTrello">Login with Trello</button>
       </nav>
 
       <main role="main" class="container">
         <a class="github-fork-ribbon fixed right-bottom" href="https://github.com/civictechto/trello-project-frontend" title="Contribute on GitHub">Contribute on GitHub</a>
         <div id="projects" class="clear">
+          <h2>Tonight's Pitches</h2>
           <div class="row card-group">
             <div v-for="(card, index) in pitchList" class='col-lg-4 col-md-6 col-sm-12 mb-4'>
               <div class="card">
               <div class="card-header">
                 <div class="container"><div class="row align-items-center">
                   <div class="col"><strong>{{ card.name }}</strong></div>
-                  <div class="col-2"><button class="btn btn-sm btn-primary" @click="demoteCard(index)"><i class="fas fa-arrow-alt-circle-down"></i></button></div>
+                  <div class="col-2"><button class="btn btn-sm btn-primary" v-bind:class="{ disabled: !isLoggedIn }" @click="demoteCard(index)"><i class="fas fa-arrow-alt-circle-down"></i></button></div>
                 </div></div>
               </div>
               <div class='card-body'>
                 <p class='card-text'>{{ card.desc | removeMd | firstParagraph | truncate(150) }}</p>
-              </div>
-              <div class='card-footer'>
                 <button class="btn float-right btn-secondary" v-bind:id="'show-modal-' + card.id" @click="show(index)">Details <i class="fas fa-expand-arrows-alt"></i></button>
               </div>
               </div>
@@ -165,13 +168,17 @@
       </main>
 
       <footer class="footer">
-        <div class="btn-toolbar">
-        <button type="button" class="btn btn-sm btn-primary mr-2"
-          v-for="(card, index) in recentPitches"
-          @click="promoteCard(index)">
-          {{ card.name }} <i class="fas fa-arrow-alt-circle-up"></i>
-        </button>
-        </div>
+        <nav class="navbar navbar-light">
+          <span class="navbar-text mr-4">Recent Pitches</span>
+          <form class="form-inline mt-3">
+            <button type="button" class="btn btn-sm btn-primary mr-2"
+              v-bind:class="{ disabled: !isLoggedIn }"
+              v-for="(card, index) in recentPitches"
+              @click="promoteCard(index)">
+              {{ card.name }} <i class="fas fa-arrow-alt-circle-up"></i>
+            </button>
+          </form>
+        </nav>
       </footer>
     </div>
 

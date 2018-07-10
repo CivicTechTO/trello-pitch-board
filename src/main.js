@@ -76,6 +76,7 @@ window.app = new Vue({
     pitchList: [],
     recentPitches: [],
     showModal: false,
+    isLoggedIn: false,
     pitchDetails: {},
   },
   created: function () {
@@ -140,6 +141,7 @@ window.app = new Vue({
       this.showModal = false
     },
     authTrello: function () {
+      var vm = this
       Trello.authorize({
         type: "redirect",
         name: "CivicTechTO Pitch Board",
@@ -147,7 +149,10 @@ window.app = new Vue({
           read: true,
           write: true },
         expiration: "never",
-        success: function() { console.log("Success!"); },
+        success: function() {
+          vm.isLoggedIn = true
+          console.log("Success!");
+        },
         error: function() { console.log("Failed authentication"); }
       })
     },
