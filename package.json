@@ -11,6 +11,7 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
+    "markdown": "^0.5.0",
     "remove-markdown": "^0.3.0",
     "vue": "^2.0.1",
     "vue-truncate-filter": "^1.1.7"

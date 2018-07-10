@@ -120,7 +120,7 @@
             </div>
             <div class="row">
               <div class="col">
-                <p>{{ pitchDetails.desc | removeMd }}<p>
+                <p v-html="parseMd(pitchDetails.desc)"></p>
               </div>
             </div>
 

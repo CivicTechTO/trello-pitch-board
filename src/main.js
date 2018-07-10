@@ -85,6 +85,11 @@ Vue.filter('removeMd', function(value) {
   return removeMd(value)
 });
 
+const markdown = require( "markdown" ).markdown
+Vue.filter('parseMd', function(value) {
+  return markdown.toHTML(value)
+})
+
 var app = new Vue({
   el: '#app',
   data: {
@@ -96,6 +101,9 @@ var app = new Vue({
     this.fetchData()
   },
   methods: {
+    parseMd: function (value) {
+      return markdown.toHTML(value)
+    },
     fetchData: function () {
       var vm = this
       var pitchListId = '58e158f29b0ae02ab71b9a87';
