@@ -86,7 +86,7 @@
           <div v-for="(card, index) in pitchList" class='col-lg-4 col-md-6 col-sm-12 mb-4'>
             <div class="card">
             <div class="card-header">
-              {{ card.name }}
+              <strong>{{ card.name }}</strong>
             </div>
             <div class='card-body'>
               <p class='card-text'>{{ card.desc | removeMd | firstParagraph | truncate(150) }}</p>
