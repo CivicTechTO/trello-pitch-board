@@ -106,7 +106,7 @@
             <a class="nav-link" href="https://trello.com/b/EVvNEGK5/hacknight-projects">Trello Board</a>
           </li>
         </ul>
-        <button class="btn" v-bind:class="{ disabled: isLoggedIn }" @click="authTrello">Login with Trello</button>
+        <button class="btn" v-bind:class="{ disabled: isLoggedIn }" @click="authTrello">{{ isLoggedIn ? 'Logged into Trello' : 'Login with Trello' }}</button>
       </nav>
 
       <main role="main" class="container">
