@@ -4,27 +4,11 @@ Vue.prototype.$last = function (item, list) {
 }
 
 var pitchListId = '58e158f29b0ae02ab71b9a87';
-Trello.authorize({
-  type: "popup",
-  name: "Trello dashboard",
-  scope: {
-    read: true,
-    write: false },
-  expiration: "never",
-  success: function() { console.log("Success!"); },
-  error: function() { console.log("Failed authentication"); }
-});
-
-var loadCards = function(listId) {
-  //Get the users boards
-  Trello.get(
-    '/lists/' + listId + '/cards',
-    loadedCards,
-    function() { console.log("Failed to load cards"); }
-  );
-};
 
 var DEFAULT_IMAGE = 'https://trello-attachments.s3.amazonaws.com/58e158d86835ad6514fa6be3/59ffd9fd175e135b4cf5cabb/ad907c5b81371304d14434348ed14837/3YbiY6Mf_400x400.png';
+
+var authTrello = function () {
+}
 
 var processCard = function(card) {
   card.asks = []
@@ -50,10 +34,6 @@ var processCard = function(card) {
     })
     card.attachments = attachments
   })
-}
-
-var loadedCards = function (response) {
-  this.pitchList = response;
 }
 
 var VueTruncate = require('vue-truncate-filter')
@@ -90,10 +70,11 @@ Vue.filter('parseMd', function(value) {
   return markdown.toHTML(value)
 })
 
-var app = new Vue({
+window.app = new Vue({
   el: '#app',
   data: {
     pitchList: [],
+    recentPitches: [],
     showModal: false,
     pitchDetails: {},
   },
@@ -104,19 +85,47 @@ var app = new Vue({
     parseMd: function (value) {
       return markdown.toHTML(value)
     },
+    promoteCard: function(index) {
+      var vm = this
+      var card = vm.recentPitches[index]
+      Trello
+        .put('/cards/'+card.id, {idList: '58e158f29b0ae02ab71b9a87', pos: 'top'})
+        .then(res => {
+          vm.recentPitches.splice(index, 1)
+          vm.pitchList.unshift(card)
+        })
+    },
+    demoteCard: function (index) {
+      var vm = this
+      var card = vm.pitchList[index]
+      var recentPitchesId = '58e158eba6846a4fb012404c'
+      Trello
+        .put('/cards/'+card.id, {idList: recentPitchesId, pos: 'bottom'})
+        .then(res => {
+          vm.pitchList.splice(index, 1)
+          vm.recentPitches.push(card)
+        })
+    },
     fetchData: function () {
       var vm = this
-      var pitchListId = '58e158f29b0ae02ab71b9a87';
-      Trello.get('/lists/' + pitchListId + '/cards')
-      .then(cards => {
-        cards.forEach(card => {
-          processCard(card)
-          vm.pitchList.push(card)
+      var pitchListId = '58e158f29b0ae02ab71b9a87'
+      Trello
+        .get('/lists/' + pitchListId + '/cards')
+        .then(cards => {
+          cards.forEach(card => {
+            processCard(card)
+            vm.pitchList.push(card)
+          })
         })
-      })
-      .error(function () {
-        console.log("Failed to load cards");
-      });
+
+      var recentPitchesId = '58e158eba6846a4fb012404c'
+      Trello
+        .get('/lists/' + recentPitchesId + '/cards')
+        .then(cards => {
+          cards.forEach(card => {
+            vm.recentPitches.push(card)
+          })
+        })
     },
     updateModal: function (index) {
       var vm = this
@@ -129,6 +138,18 @@ var app = new Vue({
     },
     hide: function () {
       this.showModal = false
+    },
+    authTrello: function () {
+      Trello.authorize({
+        type: "redirect",
+        name: "CivicTechTO Pitch Board",
+        scope: {
+          read: true,
+          write: true },
+        expiration: "never",
+        success: function() { console.log("Success!"); },
+        error: function() { console.log("Failed authentication"); }
+      })
     },
   }
 })
