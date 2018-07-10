@@ -93,6 +93,10 @@
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
       }
+
+      .modal-container {
+        transition: all .3s ease;
+      }
     </style>
 
   </head>
@@ -131,40 +135,42 @@
           </div>
         </div>
 
-        <div class="modal-mask" v-if="showModal">
-          <div class="modal-dialog modal-lg" v-click-outside="hide" role="document">
-            <div class="modal-content container">
-              <div class="modal-header">
-                <h3 class="modal-title">{{ pitchDetails.name }}</h3>
-                <button type="button" class="close" @click="hide">&times;</button>
-              </div>
+        <transition name="modal">
+          <div class="modal-mask" v-if="showModal">
+            <div class="modal-dialog modal-lg" v-click-outside="hide" role="document">
+              <div class="modal-content modal-container container">
+                <div class="modal-header">
+                  <h3 class="modal-title">{{ pitchDetails.name }}</h3>
+                  <button type="button" class="close" @click="hide">&times;</button>
+                </div>
 
-              <div class="modal-body row">
-                <div class="col-4">
-                  <img class="img-thumbnail rounded" v-if="pitchDetails.image" :src="pitchDetails.image" alt="">
-                </div>
-                <div class="col">
-                  <div class="asks">
-                    <strong>Asks:</strong> <span class="tag ask" v-for="ask in pitchDetails.asks">{{ ask }}</span>
+                <div class="modal-body row">
+                  <div class="col-4">
+                    <img class="img-thumbnail rounded" v-if="pitchDetails.image" :src="pitchDetails.image" alt="">
                   </div>
-                  <div class="tools">
-                    <strong>Tools:</strong> <span class="tag tool" v-for="tool in pitchDetails.tools">{{ tool }}</span>
+                  <div class="col">
+                    <div class="asks">
+                      <strong>Asks:</strong> <span class="tag ask" v-for="ask in pitchDetails.asks">{{ ask }}</span>
+                    </div>
+                    <div class="tools">
+                      <strong>Tools:</strong> <span class="tag tool" v-for="tool in pitchDetails.tools">{{ tool }}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <p v-html="parseMd(pitchDetails.desc)"></p>
+                <div class="row">
+                  <div class="col">
+                    <p v-html="parseMd(pitchDetails.desc)"></p>
+                  </div>
                 </div>
-              </div>
 
-              <div class="modal-footer">
-                <a class="btn btn-link" role="button" target="_blank" v-bind:href="pitchDetails.shortUrl" style="text-decoration:inherit">Edit <i class="fas fa-external-link-alt"></i></a>
-                <a class="btn btn-primary" role="button" target="_blank" @click="hide">OK</a>
+                <div class="modal-footer">
+                  <a class="btn btn-link" role="button" target="_blank" v-bind:href="pitchDetails.shortUrl" style="text-decoration:inherit">Edit <i class="fas fa-external-link-alt"></i></a>
+                  <a class="btn btn-primary" role="button" target="_blank" @click="hide">OK</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </transition>
       </main>
 
       <footer class="footer">
