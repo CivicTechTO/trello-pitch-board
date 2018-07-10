@@ -30,6 +30,15 @@
       .navbar-brand.title {
         font-size: 1.5rem;
       }
+
+      .tag {
+        background-color: #EEF; /* Set the background color */
+        border-radius: 3px;     /* Add some roundness */
+        border: 1px #CCF solid; /* Add a border */
+        padding: 2px 5px;
+        display: inline;
+        margin-right: 2px;
+      }
     </style>
     <style>
       .modal-mask {
@@ -111,10 +120,10 @@
               </div>
               <div class="col">
                 <div class="asks">
-                  <strong>Asks:</strong> <span v-for="(ask, index) in pitchDetails.asks">{{ ask }}<span v-if="index+1 < pitchDetails.asks.length">, </span></span>
+                  <strong>Asks:</strong> <span class="tag ask" v-for="ask in pitchDetails.asks">{{ ask }}</span>
                 </div>
                 <div class="tools">
-                  <strong>Tools:</strong> <span v-for="(tool, index) in pitchDetails.tools">{{ tool }}<span v-if="index+1 < pitchDetails.tools.length">, </span></span>
+                  <strong>Tools:</strong> <span class="tag tool" v-for="tool in pitchDetails.tools">{{ tool }}</span>
                 </div>
               </div>
             </div>
