@@ -81,6 +81,7 @@ window.app = new Vue({
   },
   created: function () {
     this.fetchData()
+    this.checkAuthenticated()
   },
   methods: {
     parseMd: function (value) {
@@ -140,10 +141,16 @@ window.app = new Vue({
     hide: function () {
       this.showModal = false
     },
+    checkAuthenticated: function () {
+      var vm = this
+      if (window.localStorage.trello_token) {
+        vm.authTrello()
+      }
+    },
     authTrello: function () {
       var vm = this
       Trello.authorize({
-        type: "redirect",
+        type: "popup",
         name: "CivicTechTO Pitch Board",
         scope: {
           read: true,
