@@ -90,7 +90,7 @@
             </div>
             <div class='card-body'>
               <p class='card-text'>{{ card.desc | removeMd | firstParagraph | truncate(150) }}</p>
-              <button class="btn float-right" v-bind:id="'show-modal-' + card.id" @click="show(index)">View <i class="fas fa-expand-arrows-alt"></i></button>
+              <button class="btn float-right" v-bind:id="'show-modal-' + card.id" @click="show(index)">Details <i class="fas fa-expand-arrows-alt"></i></button>
             </div>
             </div>
           </div>
